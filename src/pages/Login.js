@@ -22,13 +22,29 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false)
     const login = (e) => {
         e.preventDefault()
-
-        console.log(input);
-
+        setIsLoading(true)
+        axios.post('/auth/login', {
+            ...input
+        }).then(res => {
+            localStorage.setItem(
+                'user',
+                JSON.stringify({ name: res.data.user.name, email: res.data.user.email, token: res.data.token })
+            )
+            setIsLoading(false)
+            toast.success('Login success')
+            navigate('/dashboard')
+        }).catch(err => {
+            setIsLoading(false)
+            toast.error(err.response.data.msg)
+        })
+        setInput({
+            name: "",
+            password: ""
+        })
     }
     return (
         <div>
-            <Navbar path='/register' text='Register' />
+            <Navbar path='/register' text='Register' isLoading={isLoading} />
             <div className='w-full h-full flex justify-center items-center font-semibold'>
                 <form className='p-8 my-16 form-style' onSubmit={login}>
                     <div>

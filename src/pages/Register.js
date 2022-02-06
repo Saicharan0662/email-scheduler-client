@@ -21,9 +21,23 @@ const Register = () => {
     const [isLoading, setIsLoading] = useState(false)
     const register = (e) => {
         e.preventDefault()
-
-        console.log(input);
-
+        setIsLoading(true)
+        axios.post('/auth/register', {
+            ...input
+        }).then(res => {
+            toast.success('Register Success')
+            toast.info('Please confirm your email')
+            setIsLoading(false)
+        }).catch(err => {
+            toast.error(err.response.data.msg)
+            console.log(err.response.data.msg)
+            setIsLoading(false)
+        })
+        setInput({
+            name: "",
+            password: "",
+            email: ""
+        })
     }
     return (
         <div>
