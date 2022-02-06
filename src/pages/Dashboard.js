@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import Navbar from '../components/navbar/Navbar'
+import { Navigate } from 'react-router-dom'
+import Nav from '../components/dashboard-navbar/Nav'
 
 const Dashboard = () => {
     const user = JSON.parse(localStorage.getItem('user')) ?
@@ -10,7 +11,8 @@ const Dashboard = () => {
     console.log(user, userEmail);
     return (
         <>
-            <Navbar path='/' text='Logout' />
+            {!user && <Navigate to='/' />}
+            <Nav />
             <div>
                 This is dashboard
             </div>

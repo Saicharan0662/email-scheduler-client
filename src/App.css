@@ -9,6 +9,11 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.text-effect:hover{
+    color: #e0e0e0;
+    font: bold;
+}
+
 @media screen and (max-width: 360px) {
     .form-style{
         width: 100%;
