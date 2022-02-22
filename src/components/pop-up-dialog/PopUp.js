@@ -7,16 +7,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const PopUp = ({ email, togglePopUp, setTogglePopUp, input, setInput, submit }) => {
+const PopUp = ({ email, togglePopUp, setTogglePopUp, submit }) => {
     const [password, setPassword] = useState('')
     const handleClose = () => {
         setTogglePopUp(false)
     };
 
     const handleCloseAndSchedule = (e) => {
-        console.log(password);
-        setInput({ ...input, userPassword: password })
-        submit(e)
+        // setInput({ ...input, userPassword: password })
+        submit(e, password)
         setTogglePopUp(false)
     }
 

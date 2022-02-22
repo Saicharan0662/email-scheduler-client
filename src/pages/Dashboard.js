@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import moment from 'moment';
+import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import DateTime from '../components/custom-date/DateTime'
@@ -24,11 +26,27 @@ const Dashboard = () => {
         schedule: "",
     })
 
-    // welcoming text, notification for navbar, pop-up for email password 
-    // "schedule": "Sat Jan 15 2022 18:07:00 GMT+0530"
-    const schedule = (e) => {
+    // welcoming text, notification for navbar
+    const schedule = (e, password) => {
         e.preventDefault()
+        console.log(password)
         console.log(input)
+        axios.post('/email', {
+            userEmail: input.userEmail,
+            userPassword: password,
+            email: {
+                to: input.email.to,
+                subject: input.email.subject,
+                body: input.email.body,
+            },
+            schedule: input.schedule,
+        })
+            .then(res => {
+                console.log('success ', res)
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
     return (
         <>
@@ -88,7 +106,7 @@ const Dashboard = () => {
                             required
                             fullWidth
                             multiline
-                            rows={4}
+                            rows={3}
                             helperText="body of email"
                             id="outlined-multiline-static"
                             label="Email Body"
@@ -99,13 +117,19 @@ const Dashboard = () => {
                         />
                         <DateTime
                             label='Schedule'
-                            value={input.schedule}
-                            onChange={e => setInput({ ...input, schedule: e.target.value })}
+                            disablePast={true}
+                            // 2022-02-19T17:54
+                            value={moment(input.schedule).format('YYYY-MM-DDTHH:mm')}
+                            onChange={e => {
+                                // "Sat Jan 15 2022 18:07:00 GMT+0530"
+                                let date = new Date(e.target.value)
+                                moment(date).format('ddd MMM DD YYYY HH:mm:ss ZZ').toString()
+                                setInput({ ...input, schedule: date })
+                            }}
                             style={{
                                 marginBottom: '1.25rem',
                             }}
                         />
-                        {/* <Button type='submit' variant="contained">Next</Button> */}
                         <Button
                             variant="contained"
                             onClick={() => {

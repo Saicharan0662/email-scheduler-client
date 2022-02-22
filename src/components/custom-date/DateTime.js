@@ -1,6 +1,7 @@
+import moment from 'moment'
 import React from 'react'
 
-const DateTime = ({ label = "DateTime", value, onChange, style }) => {
+const DateTime = ({ label = "DateTime", disablePast = false, value, onChange, style }) => {
 
     return (
         <div style={style}>
@@ -9,6 +10,7 @@ const DateTime = ({ label = "DateTime", value, onChange, style }) => {
             <input
                 type={"datetime-local"}
                 name="date-time"
+                min={disablePast && moment(new Date()).format('YYYY-MM-DDTHH:mm')}
                 value={value}
                 onChange={onChange}
             />
