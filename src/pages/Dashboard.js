@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField';
-// import { AdapterDateFns } from '@mui/lab';
-// import { LocalizationProvider } from '@mui/lab';
-// import { DateTimePicker } from '@mui/lab';
-// import DatePicker from '@mui/lab/DatePicker';
+import Button from '@mui/material/Button';
+import DateTime from '../components/custom-date/DateTime'
 import Nav from '../components/dashboard-navbar/Nav'
+import PopUp from '../components/pop-up-dialog/PopUp'
 
 const Dashboard = () => {
     const user = JSON.parse(localStorage.getItem('user')) ?
@@ -13,9 +12,10 @@ const Dashboard = () => {
     const userEmail = JSON.parse(localStorage.getItem('user')) ?
         JSON.parse(localStorage.getItem('user')).email : null
 
+    const [togglePopUp, setTogglePopUp] = useState(false)
     const [input, setInput] = useState({
         userEmail: userEmail,
-        usePassword: '',
+        userPassword: '',
         email: {
             to: '',
             subject: '',
@@ -24,32 +24,37 @@ const Dashboard = () => {
         schedule: "",
     })
 
-    // welcoming text, form for email scheduling, notification for navbar, pop-up for email password 
-    // "userEmail": "saicharan0662@gmail.com",
-    //     "userPassword": "1saisagar@2002",
-    //         "email": {
-    //     "to": "sai.charans006@gmail.com",
-    //         "subject": "Success brooo!!!",
-    //             "body": "It worked perfectly buddyy!!"
-    // },
+    // welcoming text, notification for navbar, pop-up for email password 
     // "schedule": "Sat Jan 15 2022 18:07:00 GMT+0530"
-    const login = () => [
+    const schedule = (e) => {
+        e.preventDefault()
         console.log(input)
-    ]
+    }
     return (
         <>
             {!user && <Navigate to='/' />}
+            {togglePopUp &&
+                <PopUp
+                    email={input.userEmail}
+                    togglePopUp={togglePopUp}
+                    setTogglePopUp={setTogglePopUp}
+                    input={input}
+                    setInput={setInput}
+                    submit={schedule}
+                />
+            }
             <Nav />
             <div className='mx-8 my-4'>
                 <div className="font-bold text-lg">Welcome {user}!!</div>
                 <div className='w-full flex ml-8 items-center font-semibold'>
-                    <form className='p-8 my-8 form-style-dashboard' onSubmit={login}>
+                    <form className='p-8 my-8 form-style-dashboard'>
                         <h1 className="text-xl ">Let schedule some emails !!!</h1>
                         <TextField
                             required
                             fullWidth
                             helperText="ex: johndoe@gmail.com"
                             id="standard-basic"
+                            type={'email'}
                             label="Email"
                             variant="standard"
                             margin="normal"
@@ -61,6 +66,7 @@ const Dashboard = () => {
                             fullWidth
                             helperText="ex: peter@gmail.com"
                             id="standard-basic"
+                            type={'email'}
                             label="Receivers Email"
                             variant="standard"
                             margin="normal"
@@ -91,17 +97,22 @@ const Dashboard = () => {
                             value={input.email.body}
                             onChange={e => setInput({ ...input, email: { ...input.email, body: e.target.value } })}
                         />
-                        <TextField
-                            required
-                            fullWidth
-                            helperText="schedule of email"
-                            id="standard-basic"
-                            label="Schedule"
-                            variant="standard"
-                            margin="normal"
+                        <DateTime
+                            label='Schedule'
                             value={input.schedule}
                             onChange={e => setInput({ ...input, schedule: e.target.value })}
+                            style={{
+                                marginBottom: '1.25rem',
+                            }}
                         />
+                        {/* <Button type='submit' variant="contained">Next</Button> */}
+                        <Button
+                            variant="contained"
+                            onClick={() => {
+                                setTogglePopUp(true)
+                            }}>
+                            Next
+                        </Button>
                     </form>
                 </div>
             </div>
