@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import TextField from '@mui/material/TextField';
+// import { AdapterDateFns } from '@mui/lab';
+// import { LocalizationProvider } from '@mui/lab';
+// import { DateTimePicker } from '@mui/lab';
+// import DatePicker from '@mui/lab/DatePicker';
 import Nav from '../components/dashboard-navbar/Nav'
 
 const Dashboard = () => {
@@ -8,13 +13,97 @@ const Dashboard = () => {
     const userEmail = JSON.parse(localStorage.getItem('user')) ?
         JSON.parse(localStorage.getItem('user')).email : null
 
-    console.log(user, userEmail);
+    const [input, setInput] = useState({
+        userEmail: userEmail,
+        usePassword: '',
+        email: {
+            to: '',
+            subject: '',
+            body: '',
+        },
+        schedule: "",
+    })
+
+    // welcoming text, form for email scheduling, notification for navbar, pop-up for email password 
+    // "userEmail": "saicharan0662@gmail.com",
+    //     "userPassword": "1saisagar@2002",
+    //         "email": {
+    //     "to": "sai.charans006@gmail.com",
+    //         "subject": "Success brooo!!!",
+    //             "body": "It worked perfectly buddyy!!"
+    // },
+    // "schedule": "Sat Jan 15 2022 18:07:00 GMT+0530"
+    const login = () => [
+        console.log(input)
+    ]
     return (
         <>
             {!user && <Navigate to='/' />}
             <Nav />
-            <div>
-                This is dashboard
+            <div className='mx-8 my-4'>
+                <div className="font-bold text-lg">Welcome {user}!!</div>
+                <div className='w-full flex ml-8 items-center font-semibold'>
+                    <form className='p-8 my-8 form-style-dashboard' onSubmit={login}>
+                        <h1 className="text-xl ">Let schedule some emails !!!</h1>
+                        <TextField
+                            required
+                            fullWidth
+                            helperText="ex: johndoe@gmail.com"
+                            id="standard-basic"
+                            label="Email"
+                            variant="standard"
+                            margin="normal"
+                            value={input.userEmail}
+                            onChange={e => setInput({ ...input, userEmail: e.target.value })}
+                        />
+                        <TextField
+                            required
+                            fullWidth
+                            helperText="ex: peter@gmail.com"
+                            id="standard-basic"
+                            label="Receivers Email"
+                            variant="standard"
+                            margin="normal"
+                            value={input.email.to}
+                            onChange={e => setInput({ ...input, email: { ...input.email, to: e.target.value } })}
+                        />
+                        <TextField
+                            required
+                            fullWidth
+                            helperText="subject of email"
+                            id="standard-basic"
+                            label="Email Subject"
+                            variant="standard"
+                            margin="normal"
+                            value={input.email.subject}
+                            onChange={e => setInput({ ...input, email: { ...input.email, subject: e.target.value } })}
+                        />
+                        <TextField
+                            required
+                            fullWidth
+                            multiline
+                            rows={4}
+                            helperText="body of email"
+                            id="outlined-multiline-static"
+                            label="Email Body"
+                            variant="standard"
+                            margin="normal"
+                            value={input.email.body}
+                            onChange={e => setInput({ ...input, email: { ...input.email, body: e.target.value } })}
+                        />
+                        <TextField
+                            required
+                            fullWidth
+                            helperText="schedule of email"
+                            id="standard-basic"
+                            label="Schedule"
+                            variant="standard"
+                            margin="normal"
+                            value={input.schedule}
+                            onChange={e => setInput({ ...input, schedule: e.target.value })}
+                        />
+                    </form>
+                </div>
             </div>
         </>
     )

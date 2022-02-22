@@ -10,7 +10,7 @@ const Navbar = ({ path = "/login", text = "Login", isLoading = false }) => {
                     E-Scheduler
                 </div>
                 <div className='flex p-2 text-white my-1 mx-3 justify-between font-normal'>
-                    <Link to={path}> {text}</Link>
+                    <Link to={path} className="text-effect"> {text}</Link>
                 </div>
             </div>
             {isLoading && <LinearProgress color='inherit' />}
