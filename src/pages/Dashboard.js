@@ -8,6 +8,10 @@ import DateTime from '../components/custom-date/DateTime'
 import Nav from '../components/dashboard-navbar/Nav'
 import PopUp from '../components/pop-up-dialog/PopUp'
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+
 const Dashboard = () => {
     const user = JSON.parse(localStorage.getItem('user')) ?
         JSON.parse(localStorage.getItem('user')).name : null
@@ -25,6 +29,14 @@ const Dashboard = () => {
         },
         schedule: "",
     })
+
+    const validate = input => {
+        if (!input.userEmail || !input.email.to || !input.email.subject || !input.email.body || !input.schedule) {
+            toast.error('Please fill all the fields')
+            return false
+        }
+        return true
+    }
 
     // welcoming text, notification for navbar
     const schedule = (e, password) => {
@@ -63,8 +75,8 @@ const Dashboard = () => {
             }
             <Nav />
             <div className='mx-8 my-4'>
-                <div className="font-bold text-lg">Welcome {user}!!</div>
-                <div className='w-full flex ml-8 items-center font-semibold'>
+                <div className="font-bold text-lg relative left-8">Welcome {user}!!</div>
+                <div className='w-full flex items-center font-semibold'>
                     <form className='p-8 my-8 form-style-dashboard'>
                         <h1 className="text-xl ">Let schedule some emails !!!</h1>
                         <TextField
@@ -132,8 +144,10 @@ const Dashboard = () => {
                         />
                         <Button
                             variant="contained"
+                            style={{ maxWidth: '140px', maxHeight: '40px' }}
                             onClick={() => {
-                                setTogglePopUp(true)
+                                if (validate(input))
+                                    setTogglePopUp(true)
                             }}>
                             Next
                         </Button>

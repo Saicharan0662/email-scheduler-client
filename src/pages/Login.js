@@ -74,7 +74,10 @@ const Login = () => {
                             onChange={e => setInput({ ...input, password: e.target.value })}
                         />
                     </div>
-                    <Button type='submit' variant="contained">Submit</Button>
+                    <Button type='submit' variant="contained"
+                        style={{ maxWidth: '110px', maxHeight: '35px' }}>
+                        Submit
+                    </Button>
                     <p className="text-xs font-normal mt-3">dont have an account?
                         <span className='text-blue-300 cursor-pointer' onClick={() => navigate('/register')}> signup here</span>
                     </p>

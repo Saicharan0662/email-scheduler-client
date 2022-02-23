@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { toast } from 'react-toastify';
 
 const PopUp = ({ email, togglePopUp, setTogglePopUp, submit }) => {
     const [password, setPassword] = useState('')
@@ -14,7 +15,10 @@ const PopUp = ({ email, togglePopUp, setTogglePopUp, submit }) => {
     };
 
     const handleCloseAndSchedule = (e) => {
-        // setInput({ ...input, userPassword: password })
+        if (!password) {
+            toast.error('Please enter your password')
+            return
+        }
         submit(e, password)
         setTogglePopUp(false)
     }
