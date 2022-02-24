@@ -9,8 +9,8 @@ import Nav from '../components/dashboard-navbar/Nav'
 import PopUp from '../components/pop-up-dialog/PopUp'
 
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-toast.configure()
+// import 'react-toastify/dist/ReactToastify.css';
+// toast.configure()
 
 const Dashboard = () => {
     const user = JSON.parse(localStorage.getItem('user')) ?
