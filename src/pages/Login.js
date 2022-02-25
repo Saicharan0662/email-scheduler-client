@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import '../axios'
 
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
@@ -43,10 +42,10 @@ const Login = () => {
         })
     }
     return (
-        <div>
+        <div className=''>
             <Navbar path='/register' text='Register' isLoading={isLoading} />
-            <div className='w-full h-full flex justify-center items-center font-semibold'>
-                <form className='p-8 my-16 form-style' onSubmit={login}>
+            <div className='w-full h-full flex justify-center items-center font-semibold bg-image'>
+                <form className='p-8 my-16 form-style bg-white' onSubmit={login}>
                     <div>
                         <h1 className="text-xl ">Log in</h1>
                         <TextField

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 const Navbar = ({ path = "/login", text = "Login", isLoading = false }) => {
     return (
         <div className='sticky top-0 left-0' style={{ zIndex: '2' }}>
-            <div className=' w-full flex justify-between align-center' style={{ minHeight: '50px', backgroundColor: "#5f57ff" }}>
-                <div className='text-white font-normal p-2 my-1 mx-3'>
+            <div className=' w-full flex justify-between align-center' style={{ minHeight: '55px', backgroundColor: "#1059a2" }}>
+                <div className='text-white font-normal my-4 mx-4'>
                     E-Scheduler
                 </div>
-                <div className='flex p-2 text-white my-1 mx-3 justify-between font-normal'>
+                <div className='flex text-white justify-between font-normal nav-btn'>
                     <Link to={path} className="text-effect"> {text}</Link>
                 </div>
             </div>

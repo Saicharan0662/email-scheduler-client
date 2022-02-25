@@ -37,7 +37,8 @@
 /* form styling */
 .form-style{
     width: 350px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    box-shadow: rgba(56, 125, 143, 0.349) 0px 7px 29px 0px;
 }
 
 .form-style-dashboard{
@@ -61,10 +62,23 @@
     }
 }
 
+/* Login page */
+.bg-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: url('./assets/background/Snow.png');
+    background-size: cover;
+    opacity: 0.9;
+    background-position: center;
+}
+
 /* Utilities classes */
 .text-effect:hover{
-    color: #e0e0e0;
-    font: bold;
+    color: rgb(118, 118, 199);
 }
 .vid-parent{
     position: relative;
@@ -88,4 +102,14 @@
 }
 .font-baloo{
     font-family: 'Baloo 2', cursive;
+}
+
+.nav-btn{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 6px 20px;
+    margin: 10px 5px;
+    color: black;
+    height: 35px;
+    font-weight: 500;
 }

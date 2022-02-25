@@ -42,8 +42,8 @@ const Register = () => {
     return (
         <div>
             <Navbar path='/login' text='Login' isLoading={isLoading} />
-            <div className='w-full h-full flex justify-center items-center font-semibold'>
-                <form className='p-8 my-16 form-style' onSubmit={register}>
+            <div className='w-full h-full flex justify-center items-center font-semibold bg-image'>
+                <form className='p-8 my-16 form-style bg-white' onSubmit={register}>
                     <div>
                         <h1 className="text-xl ">Register</h1>
                         <TextField
