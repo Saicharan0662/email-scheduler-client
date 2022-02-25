@@ -104,6 +104,16 @@
     font-family: 'Baloo 2', cursive;
 }
 
+.md-text{
+    font-size: 3rem;
+    color: rgba(2, 4, 83, 0.329);
+    font-weight: 400;
+    background-color: rgba(255, 255, 255, 0.247);
+    margin: 5px 0;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
 .nav-btn{
     background-color: #fff;
     border-radius: 5px;

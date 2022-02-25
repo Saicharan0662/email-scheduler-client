@@ -1,9 +1,9 @@
 import React from 'react'
 import './button-large.css'
 
-const Button = ({ text = "click me!!", ...otherProps }) => {
+const Button = ({ text = "click me!!", style, ...otherProps }) => {
     return (
-        <button {...otherProps}>
+        <button {...otherProps} style={style}>
             {text}
         </button>
     )
