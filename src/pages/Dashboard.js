@@ -41,7 +41,7 @@ const Dashboard = () => {
     // welcoming text, notification for navbar
     const schedule = (e, password) => {
         e.preventDefault()
-        console.log(password)
+        // console.log(password)
         console.log(input)
         axios.post('/email', {
             userEmail: input.userEmail,
@@ -61,7 +61,7 @@ const Dashboard = () => {
             })
     }
     return (
-        <>
+        <div className='bg-image'>
             {!user && <Navigate to='/' />}
             {togglePopUp &&
                 <PopUp
@@ -75,9 +75,9 @@ const Dashboard = () => {
             }
             <Nav />
             <div className='mx-8 my-4'>
-                <div className="font-bold text-lg relative left-8">Welcome {user}!!</div>
+                <div className="font-bold text-lg relative left-7">Welcome {user}!!</div>
                 <div className='w-full flex items-center font-semibold'>
-                    <form className='p-8 my-8 form-style-dashboard'>
+                    <form className='p-8 my-8 form-style-dashboard bg-white'>
                         <h1 className="text-xl ">Let schedule some emails !!!</h1>
                         <TextField
                             required
@@ -128,7 +128,7 @@ const Dashboard = () => {
                             onChange={e => setInput({ ...input, email: { ...input.email, body: e.target.value } })}
                         />
                         <DateTime
-                            label='Schedule'
+                            label='Schedule *'
                             disablePast={true}
                             // 2022-02-19T17:54
                             value={moment(input.schedule).format('YYYY-MM-DDTHH:mm')}
@@ -154,7 +154,7 @@ const Dashboard = () => {
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -30,6 +30,7 @@ const PopUp = ({ email, togglePopUp, setTogglePopUp, submit }) => {
                 <DialogContent>
                     <DialogContentText>
                         Please enter your password for <strong>{email}</strong> to continue.
+                        <div className="text-red-400 text-sm">Note: We dont share or store your password.</div>
                     </DialogContentText>
                     <TextField
                         autoFocus
