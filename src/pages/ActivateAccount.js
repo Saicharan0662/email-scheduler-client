@@ -14,7 +14,6 @@ const ActivateAccount = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const confirmEmail = () => {
-        console.log("here")
         setIsLoading(true)
         axios.patch('/auth/activate/:token', {
             clientToken: token

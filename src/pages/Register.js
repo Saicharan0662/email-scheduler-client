@@ -3,9 +3,11 @@ import Navbar from '../components/navbar/Navbar'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom'
+import { GoogleLogin } from 'react-google-login';
 import axios from 'axios'
 import '../axios'
 
+import google from '../assets/icons/google.png'
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,12 +27,11 @@ const Register = () => {
         axios.post('/auth/register', {
             ...input
         }).then(res => {
-            toast.success('Register Success')
+            toast.success('Registeration Success')
             toast.info('Please confirm your email')
             setIsLoading(false)
         }).catch(err => {
             toast.error(err.response.data.msg)
-            console.log(err.response.data.msg)
             setIsLoading(false)
         })
         setInput({
@@ -39,6 +40,30 @@ const Register = () => {
             email: ""
         })
     }
+
+    const responseSuccessGoogle = response => {
+        const { id_token } = response.tokenObj
+        axios.post('/auth/googleSignup', {
+            id_token
+        })
+            .then(res => {
+                toast.success('Registeration Success')
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify({ name: res.data.user.name, email: res.data.user.email, token: res.data.token })
+                )
+                navigate('/dashboard')
+            })
+            .catch(err => {
+                toast.error(err.response.data.msg)
+                setIsLoading(false)
+            })
+    }
+    const responseErrorGoogle = res => {
+        console.log(res)
+    }
+
+
     return (
         <div>
             <Navbar path='/login' text='Login' isLoading={isLoading} />
@@ -84,11 +109,24 @@ const Register = () => {
                     </div>
                     <Button type='submit' variant="contained"
                         style={{ maxWidth: '110px', maxHeight: '35px' }}>
-                        Submit
+                        Sign-up
                     </Button>
                     <p className="text-xs font-normal mt-3">already have an account!
                         <span className='text-blue-300 cursor-pointer' onClick={() => navigate('/login')}> login here</span>
                     </p>
+                    <GoogleLogin
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                        render={(renderProps) => (
+                            <button onClick={renderProps.onClick} disabled={renderProps.disabled} className='google-btn'>
+                                <span><img src={google} alt="G" /></span>
+                                Sign-up with Google
+                            </button>
+                        )}
+                        buttonText="Signup with Google"
+                        onSuccess={responseSuccessGoogle}
+                        onFailure={responseErrorGoogle}
+                        cookiePolicy={'single_host_origin'}
+                    />
                 </form>
             </div>
         </div>

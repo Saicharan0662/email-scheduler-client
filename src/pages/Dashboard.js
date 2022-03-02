@@ -41,8 +41,6 @@ const Dashboard = () => {
     // welcoming text, notification for navbar
     const schedule = (e, password) => {
         e.preventDefault()
-        // console.log(password)
-        console.log(input)
         axios.post('/email', {
             userEmail: input.userEmail,
             userPassword: password,
@@ -54,10 +52,10 @@ const Dashboard = () => {
             schedule: input.schedule,
         })
             .then(res => {
-                console.log('success ', res)
+                toast.success('Email Scheduled Successfully')
             })
             .catch(err => {
-                console.log(err);
+                toast.error(err.response.data.msg)
             })
     }
     return (

@@ -123,3 +123,24 @@
     height: 35px;
     font-weight: 500;
 }
+
+.google-btn{
+    width: 90%;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-size: 14px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.google-btn span img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
