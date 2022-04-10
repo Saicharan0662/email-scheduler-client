@@ -3,15 +3,18 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import { toast } from 'react-toastify';
 
 const ForgetPassword = () => {
     const { token } = useParams()
     const navigate = useNavigate()
     const [input, setInput] = useState({ newPassword: "", confirmPassword: "" })
+    const [isLoading, setIsLoading] = useState(false)
 
     const resetPassword = (e) => {
         e.preventDefault()
+        setIsLoading(true)
         if (input.newPassword !== input.confirmPassword)
             toast.error('Password does not match')
         axios.patch('/auth/reset-password', {
@@ -21,16 +24,21 @@ const ForgetPassword = () => {
             .then(res => {
                 console.log(res)
                 toast.success('Password reset success')
+                setIsLoading(false)
                 navigate('/login')
             })
             .catch(err => {
                 toast.error(err.response.data.msg)
+                setIsLoading(false)
             })
     }
 
     return (
         <div>
-            <div className='w-full h-full flex justify-center items-center font-semibold bg-image'>
+            <div className='circular-spinner'>
+                {isLoading && <CircularProgress />}
+            </div>
+            <div className='w-full h-full flex flex-col justify-center items-center font-semibold bg-image'>
                 <form className='p-8 my-16 form-style bg-white' onSubmit={resetPassword}>
                     <div>
                         <h1 className="text-xl ">Reset Password</h1>
