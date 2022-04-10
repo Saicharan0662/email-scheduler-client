@@ -67,6 +67,19 @@ const Login = () => {
         console.log(res)
     }
 
+    const getResetPasswordLink = () => {
+        if (!input.email) toast.error('Please enter your email')
+        axios.post('/auth/forget-password', {
+            email: input.email
+        })
+            .then(() => {
+                toast.success('Reset password link has been sent to your email')
+            })
+            .catch(err => {
+                toast.error(err.response.data.msg)
+            })
+    }
+
     return (
         <div className=''>
             <Navbar path='/register' text='Register' isLoading={isLoading} />
@@ -99,6 +112,10 @@ const Login = () => {
                             onChange={e => setInput({ ...input, password: e.target.value })}
                         />
                     </div>
+                    <p className='text-blue-300 cursor-pointer text-xs flex flex-row-reverse'
+                        onClick={getResetPasswordLink}>
+                        Forget Password?
+                    </p>
                     <Button type='submit' variant="contained"
                         style={{ maxWidth: '110px', maxHeight: '35px' }}>
                         Login

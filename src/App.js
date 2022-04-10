@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import './App.css'
 import ActivateAccount from './pages/ActivateAccount';
+import ForgetPassword from './pages/ForgetPassword';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/confirmation/:token" element={<ActivateAccount />} />
+          <Route exact path='/reset-password/:token' element={<ForgetPassword />} />
         </Routes>
       </Router>
     </div>
