@@ -4,7 +4,7 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ForgetPassword = () => {
     const { token } = useParams()
@@ -15,8 +15,11 @@ const ForgetPassword = () => {
     const resetPassword = (e) => {
         e.preventDefault()
         setIsLoading(true)
-        if (input.newPassword !== input.confirmPassword)
+        if (input.newPassword !== input.confirmPassword) {
             toast.error('Password does not match')
+            setIsLoading(false)
+            return;
+        }
         axios.patch('/auth/reset-password', {
             clientToken: token,
             newPassword: input.newPassword
@@ -35,6 +38,7 @@ const ForgetPassword = () => {
 
     return (
         <div>
+            <Toaster />
             <div className='circular-spinner'>
                 {isLoading && <CircularProgress />}
             </div>

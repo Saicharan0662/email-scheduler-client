@@ -3,10 +3,7 @@ import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '../components/button-large/LargeButton';
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-toast.configure()
+import toast, { Toaster } from 'react-hot-toast';
 
 const ActivateAccount = () => {
     const navigate = useNavigate()
@@ -33,6 +30,7 @@ const ActivateAccount = () => {
 
     return (
         <div className='relative'>
+            <Toaster />
             <div className="vid-parent">
                 <video autoPlay loop muted className='video-home'>
                     <source

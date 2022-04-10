@@ -6,13 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 import axios from 'axios'
 import '../axios'
-
 import google from '../assets/icons/google.png'
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-toast.configure()
-
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -82,6 +77,7 @@ const Login = () => {
 
     return (
         <div className=''>
+            <Toaster />
             <Navbar path='/register' text='Register' isLoading={isLoading} />
             <div className='w-full h-full flex justify-center items-center font-semibold bg-image'>
                 <form className='p-8 my-16 form-style bg-white' onSubmit={login}>
