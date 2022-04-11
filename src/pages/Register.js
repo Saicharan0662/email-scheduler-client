@@ -24,7 +24,7 @@ const Register = () => {
             ...input
         }).then(res => {
             toast.success('Registeration Success')
-            toast.info('Please confirm your email')
+            toast('Please confirm your email')
             setIsLoading(false)
         }).catch(err => {
             toast.error(err.response.data.msg)
