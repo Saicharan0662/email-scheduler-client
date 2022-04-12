@@ -12,7 +12,6 @@ import toast, { Toaster } from 'react-hot-toast';
 const Login = () => {
     const navigate = useNavigate()
     const [input, setInput] = useState({
-        name: "",
         email: "",
         password: ""
     })
@@ -35,7 +34,7 @@ const Login = () => {
             toast.error(err.response.data.msg)
         })
         setInput({
-            name: "",
+            email: "",
             password: ""
         })
     }
