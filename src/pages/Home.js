@@ -1,12 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../components/button-large/LargeButton'
+import SButton from '../components/support-button/SButton'
 
 const Home = () => {
     const navigate = useNavigate()
 
     return (
         <div className='relative'>
+            <SButton />
             <div className="vid-parent">
                 <video autoPlay loop muted className='video-home'>
                     <source

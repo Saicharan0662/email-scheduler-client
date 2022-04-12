@@ -155,3 +155,23 @@
     left: 46%;
     top: 20%;
 }
+
+.sbtn {
+    padding: 6px 16px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: rgba(127, 255, 212, 0.452);
+    font: 700;
+    font-size: 12px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 2;
+    color: white;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.sbtn:hover {
+    background-color: rgba(127, 255, 212, 0.6);
+}
