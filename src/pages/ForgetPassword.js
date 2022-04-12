@@ -72,7 +72,7 @@ const ForgetPassword = () => {
                         />
                         <Button type='submit' variant="contained"
                             style={{ maxWidth: '110px', maxHeight: '35px' }}>
-                            Login
+                            Reset Password
                         </Button>
                     </div>
                 </form>
