@@ -41,6 +41,7 @@ const Login = () => {
 
     const responseSuccessGoogle = response => {
         const { id_token } = response.tokenObj
+        setIsLoading(true)
         axios.post('/auth/googleLogin', {
             id_token
         })
@@ -51,6 +52,7 @@ const Login = () => {
                     JSON.stringify({ name: res.data.user.name, email: res.data.user.email, token: res.data.token })
                 )
                 navigate('/dashboard')
+                setIsLoading(false)
             })
             .catch(err => {
                 toast.error(err.response.data.msg)

@@ -39,6 +39,7 @@ const Register = () => {
 
     const responseSuccessGoogle = response => {
         const { id_token } = response.tokenObj
+        setIsLoading(true)
         axios.post('/auth/googleSignup', {
             id_token
         })
@@ -49,6 +50,7 @@ const Register = () => {
                     JSON.stringify({ name: res.data.user.name, email: res.data.user.email, token: res.data.token })
                 )
                 navigate('/dashboard')
+                setIsLoading(false)
             })
             .catch(err => {
                 toast.error(err.response.data.msg)
