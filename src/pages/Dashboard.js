@@ -72,6 +72,9 @@ const Dashboard = () => {
             <Nav />
             <div className='mx-8 my-4'>
                 <div className="font-bold text-lg relative left-7">Welcome {user}!!</div>
+                <p className='relative left-7 text-red-400 text-sm font-semibold'>NOTE: You have to give access to less secured apps for the registered Email:
+                    <a className='cursor-pointer text-black' href="https://myaccount.google.com/security" target="_blank"> from here</a>
+                </p>
                 <div className='w-full flex items-center font-semibold'>
                     <form className='p-8 my-8 form-style-dashboard bg-white'>
                         <h1 className="text-xl ">Let schedule some emails !!!</h1>
